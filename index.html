@@ -186,7 +186,77 @@
             /* ... (Các rule responsive khác giữ nguyên) ... */
             .donate-button { padding: 10px 20px; font-size: 1em; }
         }
+
+        /* KHỐI BẢNG SAO KÊ */
+        .statement-section {
+            margin: 40px 0;
+        }
         
+        .statement-section h2 {
+            font-size: 1.8em;
+            color: #007bff; /* Màu xanh dương cho tiêu đề */
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 5px solid #007bff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .statement-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .statement-table th, .statement-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .statement-table th {
+            background-color: #007bff; /* Màu nền xanh dương cho tiêu đề cột */
+            color: white;
+            font-weight: 700;
+        }
+        
+        .statement-table tr:hover {
+            background-color: #f1f8ff; /* Hiệu ứng hover nhẹ */
+        }
+        
+        /* Cột số tiền */
+        .statement-table .amount {
+            text-align: right;
+            font-weight: 700;
+            color: #28a745; /* Màu xanh lá cây cho số tiền nhận */
+        }
+        
+        /* Mobile responsive cho bảng */
+        @media (max-width: 600px) {
+            .statement-table th, .statement-table td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+      
+        /* Dòng Tổng Kết */
+        .statement-table tfoot td {
+            background-color: #f0f0f0; /* Nền xám nhạt */
+            font-weight: 900;
+            border-top: 3px solid #007bff; /* Đường viền xanh đậm */
+            font-size: 1.1em;
+            color: #007bff;
+        }
+        
+        /* Cột số tiền tổng */
+        .statement-table tfoot .total-amount {
+            text-align: right;
+            color: #dc3545; /* Màu đỏ cho tổng số tiền */
+        }
+                
         /* KHỐI CHI TIÊU (Usage) */
         .usage-box {
             background-color: #f0f7ff;
@@ -326,6 +396,34 @@
         alert("Cảm ơn bạn đã ủng hộ tôi <3");
     }
 </script>
+
+        <section class="statement-section">
+            <h2><span style="margin-right: 10px;">📋</span> Bảng Sao Kê Realtime (Đã Nhận)</h2>
+            <table class="statement-table">
+                <thead>
+                    <tr>
+                        <th>Thời Gian</th>
+                        <th>Người Gửi</th>
+                        <th>Nội Dung</th>
+                        <th class="amount">Số Tiền (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:45, 11/12/2025</td>
+                        <td>Người ủng hộ ẩn danh</td>
+                        <td>Donate cho Huong Giang</td>
+                        <td class="amount">10.000</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                <tr>
+                    <td colspan="3">TỔNG SỐ TIỀN ĐÃ NHẬN</td>
+                    <td class="total-amount">10.000</td>
+                </tr>
+            </tfoot>
+            </table>
+        </section>
         
         <section class="usage-section">
             <h2 class="section-header" style="color: #6c757d;"><span style="color: #ffc107;">📈</span> Tôi Sẽ Dùng Tiền Vào Đâu?</h2>
