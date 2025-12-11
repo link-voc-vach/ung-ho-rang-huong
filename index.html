@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ủng hộ RANG HƯƠNG - Trang Web ủng hộ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* BASE & LAYOUT */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .content-container {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-weight: 700;
+        }
+
+        /* HEADER - Phần màu hồng/tím */
+        .header-container {
+            background: linear-gradient(135deg, #ff6b81, #a461e7);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo-area { margin-bottom: 20px; }
+        .logo {
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 4px solid white; background-color: white; object-fit: cover;
+        }
+        .header-container h1 { font-size: 2.5em; margin-top: 0; margin-bottom: 30px; font-weight: 900; }
+        .nurture-box {
+            background-color: rgba(255, 255, 255, 0.2); max-width: 500px; margin: 0 auto;
+            padding: 15px 20px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .nurture-box h2 { font-size: 1.5em; margin: 0; font-weight: 700; }
+        .nurture-box p { margin: 5px 0 0; font-size: 0.9em; opacity: 0.8; }
+
+        /* FEATURE GRID - Tại Sao Nên Ủng hộ RANG HƯƠNG? */
+        .why-nurture h2 {
+            font-size: 1.8em; color: #333; text-align: left; margin-bottom: 30px;
+            display: flex; align-items: center;
+        }
+        .icon-point { font-size: 1.2em; margin-right: 10px; color: #cc0000; }
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; text-align: center;
+        }
+        .feature-item {
+            background-color: white; padding: 20px; border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); min-height: 200px;
+            display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+        }
+        .icon-box {
+            background-color: #f0f0f0; padding: 15px; border-radius: 50%;
+            margin-bottom: 15px; display: inline-flex; justify-content: center;
+            align-items: center; width: 60px; height: 60px;
+        }
+        .icon { font-size: 2em; }
+        .feature-item h3 { color: #333; font-size: 1.2em; margin-top: 0; margin-bottom: 10px; }
+        .feature-item p { color: #666; font-size: 0.9em; }
+
+
+        /* LIST SECTIONS (So Sánh, Cam Kết, Chi Tiêu) */
+        .section-header {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            padding-left: 10px;
+            border-left: 5px solid;
+            display: flex;
+            align-items: center;
+        }
+        .section-header span { margin-right: 10px; }
+
+        .compare-section .section-header { border-left-color: #f05a76; color: #333; }
+        .commitment-section .section-header { border-left-color: #ffc107; color: #333; }
+        .usage-section .section-header { border-left-color: #6c757d; color: #333; }
+        .message-section .section-header { border-left-color: #dc3545; color: #333; }
+
+
+        .compare-box, .list-box {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* KHỐI SO SÁNH (Người Khác) - Đỏ */
+        .compare-other {
+            background-color: #fee;
+            border: 1px solid #f05a76;
+            color: #cc0000;
+        }
+        .compare-other h3 { color: #cc0000; font-size: 1.5em; margin-top: 0; }
+        .compare-other .list-item { color: #333; }
+
+        /* KHỐI SO SÁNH (Ủng hộ RANG HƯƠNG) - Xanh Lá */
+        .compare-nurture {
+            background-color: #e6ffe6;
+            border: 1px solid #28a745;
+            color: #28a745;
+        }
+        .compare-nurture h3 { color: #28a745; font-size: 1.5em; margin-top: 0; }
+        .compare-nurture .list-item { color: #333; }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+        .list-item span.icon-check {
+            margin-right: 10px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #28a745; /* Mặc định là xanh lá cho checkmark */
+        }
+        .compare-other .list-item span.icon-check { color: #f05a76; } /* Đỏ cho phần Người Khác */
+
+        /* KHỐI DONATE QR CODE */
+        .donate-section {
+            background: linear-gradient(135deg, #ffebcd, #ffc8c8); /* Màu nền chuyển từ cam nhạt sang hồng nhạt */
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px; /* Điều chỉnh bo tròn khung lớn hơn */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+
+        .donate-section h2 {
+            font-size: 1.8em;
+            color: #dc3545;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donate-section h2 span {
+            margin-right: 10px;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 5px solid white;
+            border-radius: 15px; /* Điều chỉnh bo tròn cho ảnh QR code */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .donate-message {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .donate-button {
+            background: linear-gradient(45deg, #007bff, #a461e7); /* Gradient xanh dương/tím */
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        
+        .donate-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* ... (Các rule responsive khác giữ nguyên) ... */
+            .donate-button { padding: 10px 20px; font-size: 1em; }
+        }
+        
+        /* KHỐI CHI TIÊU (Usage) */
+        .usage-box {
+            background-color: #f0f7ff;
+            border: 1px solid #b3d9ff;
+        }
+        .usage-box .list-item span.icon-check { color: #007bff; }
+        .usage-box .list-item strong { font-weight: 700; }
+
+        /* KHỐI CAM KẾT (Commitment) */
+        .commitment-box {
+            background-color: #fffde6;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            box-shadow: none;
+        }
+        .commitment-box .list-item span.icon-check { color: #ffc107; }
+
+        /* KHỐI LỜI NHẮN (Message) */
+        .message-box {
+            background-color: #ffebf0;
+            border: 1px solid #ff6b81;
+            padding: 30px;
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .message-box h2 {
+            border-left: 5px solid #dc3545;
+            padding-left: 10px;
+        }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #6c757d;
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container { padding: 30px 10px; }
+            .header-container h1 { font-size: 2em; }
+            .content-container { padding: 20px 10px; }
+            .why-nurture h2, .section-header { font-size: 1.5em; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header-container">
+        <div class="logo-area">
+            <img src="data:image/png;base64," alt="Logo NuoiToi.com" class="logo">
+        </div>
+        <h1>🌱 ỦNG HỘ RANG HƯƠNG 🌱</h1>
+        <div class="nurture-box">
+            <h2>HÃY ỦNG HỘ RANG HƯƠNG</h2>
+            <p>Văn hứa sao kê và chi tiêu minh bạch!</p>
+        </div>
+    </div>
+
+    <main class="content-container">
+        <section class="why-nurture">
+            <h2><span class="icon-point">🔴</span> Tại Sao Nên Ủng Hộ RANG HƯƠNG?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon-box"><span class="icon">📈</span></div>
+                    <h3>Sao Kê Realtime</h3>
+                    <p>Cập nhật từng giây! Còn nhanh hơn cả tốc độ tiêu tiền của bạn!</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><span class="icon">🔍</span></div>
+                    <h3>Minh Bạch 300%</h3>
+                    <p>Hơn cả 100%! Tôi còn báo cáo cả việc tôi mua máy ảnh, drone như thế nào!</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><span class="icon">💵</span></div>
+                    <h3>Chi Tiêu Hợp Lý</h3>
+                    <p>Không la cà, ăn nhậu. CHỈ đi cà phê, chụp ảnh, chơi game với mọi người thôi!</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><span class="icon">📱</span></div>
+                    <h3>App Tracking</h3>
+                    <p>Theo dõi 24/7 tôi đi ăn, uống gì, đi đâu, ngủ đâu. Như "Hình với bóng" vậy!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="commitment-section">
+            <h2 class="section-header" style="color: #ffc107;"><span style="color: #ffc107;">🏠</span> Cam Kết Vàng Của RANG HƯƠNG:</h2>
+            <div class="commitment-box">
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Sao kê mỗi ngày:</strong> Cập nhật lúc 6h sáng, đều như vắt chanh! (Kể cả Chủ Nhật & Lễ)</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Không giấu giếm:</strong> Từ ly cà phê laph đến cái máy ảnh đều được ghi chép tỉ mỉ!</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Có hóa đơn chứng từ:</strong> Chụp hình bill, quét mã vạch, lưu biên lai đầy đủ!</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Video unboxing:</strong> Hứa chụp ảnh, quay video đẹp đỉnh nóc kịch trần (Chụp xấu thì không gửi)!</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Hotline 24/7:</strong> Gọi rủ tôi ăn gì, nhậu gì, đi chơi bất cứ lúc nào, kể cả 3h sáng (miễn là bao)!</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>Không block:</strong> Hỏi khó đến mấy cũng trả lời, không "đã xem" rồi im lặng!</div>
+            </div>
+        </section>
+
+        <section class="compare-section">
+            <h2 class="section-header" style="color: #f05a76;"><span style="color: #f05a76;">$</span> So Sánh Với "Người Khác"</h2>
+            
+            <div class="compare-box compare-other">
+                <h3><span style="font-size: 1.5em; margin-right: 10px;">❌</span> Người Khác:</h3>
+                <div class="list-item"><span class="icon-check">✓</span> Sao kê sau 3 năm (hoặc không bao giờ)</div>
+                <div class="list-item"><span class="icon-check">✓</span> Đi ăn nhậu, kara không rủ</div>
+                <div class="list-item"><span class="icon-check">✓</span> Số liệu "làm tròn" theo kiểu 1 + 1 = 3</div>
+                <div class="list-item"><span class="icon-check">✓</span> Block người hỏi nhanh như chớp</div>
+            </div>
+
+            <div class="compare-box compare-nurture">
+                <h3><span style="font-size: 1.5em; margin-right: 10px;">✅</span> Ủng hộ RANG HƯƠNG:</h3>
+                <div class="list-item"><span class="icon-check">✓</span> Sao kê trước khi tiêu (để anh chị duyệt)</div>
+                <div class="list-item"><span class="icon-check">✓</span> Đi cà phê, ăn uống, picnic camping ở đâu cũng rủ mọi người</div>
+                <div class="list-item"><span class="icon-check">✓</span> Số liệu chính xác đến từng đồng</div>
+                <div class="list-item"><span class="icon-check">✓</span> Trả lời inbox nhanh hơn cả chatbot</div>
+            </div>
+        </section>
+
+        <section class="donate-section">
+            <h2><span style="font-size: 1.2em;">💳</span> DONATE NGAY ĐI, NẾU BẠN ĐANG CƯỜI!</h2>
+            <p class="donate-message">Quét mã QR này để ủng hộ RANG HƯƠNG (và nhận sao kê lập tức!)</p>
+            <div class="qr-code">
+                <img src="data:image/png;base64," alt="QR Code Chuyển Khoản">
+            </div>
+            <p class="donate-message">Chuyển xong là có tin nhắn trả lời!</p>
+            <button class="donate-button">
+                <span style="margin-right: 5px;">💙</span> TÔI MUỐN ỦNG HỘ RANG HƯƠNG!
+            </button>
+        </section>
+        
+        <section class="usage-section">
+            <h2 class="section-header" style="color: #6c757d;"><span style="color: #ffc107;">📈</span> Tôi Sẽ Dùng Tiền Vào Đâu?</h2>
+            <div class="list-box usage-box">
+                <div class="list-item"><span class="icon-check">✓</span> <strong>40%</strong> - GÓP mua xe ô tô (Chở mọi người đi camping)</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>20%</strong> - Cà phê ăn uống cùng mọi người</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>15%</strong> - Tiền mua các phụ kiện camping, máy ảnh, thiết bị điện tử (Nhu cầu cá nhân!)</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>10%</strong> - Gửi tiết kiệm mua nhà (Tụ điểm tập hợp của mọi người)</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>10%</strong> - Học tập nâng cao, mua bản quyền (Sách, khóa học làm phim chỉnh ảnh)</div>
+                <div class="list-item"><span class="icon-check">✓</span> <strong>5%</strong> - Giải trí (Netflix? Không! Rổ phim and Chill!)</div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <h2 class="section-header" style="border-left-color: #dc3545; color: #dc3545;"><span style="color: #dc3545;">🎤</span> Lời Nhắn Từ Trái Tim</h2>
+            <div class="message-box">
+                <p>Trong thời đại mà "từ thiện" đã trở thành nhạy cảm, tôi xin khẳng định: **HÃY ỦNG HỘ RANG HƯƠNG!**</p>
+                <p>Tôi nghèo, tôi cần tiền, nhưng tôi **KHÔNG MẤT LƯƠNG TÂM!** Mỗi đồng tiền các anh chị gửi, tôi sẽ chi tiêu rõ ràng, minh bạch như bụng đói của tôi vậy! 😥</p>
+                <p>P/S: Tôi hứa sẽ không mua ô tô bằng tiền donate. Vì... tôi chưa có bằng lái! ❌</p>
+            </div>
+            
+            <div class="disclaimer">
+                <span style="color: #ffc107;">⚠️</span> **DISCLAIMER:** Đây là trang web mang tính chất **HÀI HƯỚC**. Mọi nội dung đều mang tính giải trí, không nhằm mục đích xúc phạm hay chỉ trích bất kỳ cá nhân/tổ chức nào.
+            </div>
+        </section>
+    </main>
+</body>
+</html>
